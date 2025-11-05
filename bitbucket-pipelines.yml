@@ -21,6 +21,7 @@ pipelines:
         script:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
+          - yarn install --immutable
           - yarn build
         artifacts:
           - dist/**
