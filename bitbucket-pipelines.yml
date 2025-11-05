@@ -4,14 +4,22 @@ pipelines:
   default:
     - step:
         name: Install dependencies
+        caches:
+          - yarn
         script:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
-          - yarn --version
           - yarn install --immutable
+        artifacts:
+          - .yarn/**
+          - node_modules/**
+          - .pnp.cjs
+          - .pnp.loader.mjs
 
     - step:
         name: Build Vite app
+        caches:
+          - yarn
         script:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
@@ -21,15 +29,17 @@ pipelines:
 
     - step:
         name: Run Cypress E2E Tests
+        caches:
+          - yarn
         script:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
 
-          # Start Vite dev server in background
           - yarn dev &
-
-          # Wait for it to be ready
           - yarn wait-on http://localhost:5173
 
-          # Run Cypress headless tests
           - yarn cypress run --browser chrome
+
+definitions:
+  caches:
+    yarn: .yarn/cache
