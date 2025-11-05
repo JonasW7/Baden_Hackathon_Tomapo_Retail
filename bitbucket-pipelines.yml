@@ -31,6 +31,7 @@ pipelines:
         name: Run Cypress E2E Tests
         caches:
           - yarn
+          - cypress
         script:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
@@ -43,5 +44,4 @@ pipelines:
 definitions:
   caches:
     yarn: .yarn/cache
-    npm: $HOME/.npm
     cypress: $HOME/.cache/Cypress
