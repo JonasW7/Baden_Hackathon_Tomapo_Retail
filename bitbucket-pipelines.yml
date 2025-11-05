@@ -5,6 +5,7 @@ pipelines:
     - step:
         name: Install dependencies
         script:
+          - set NODE_ENV=development.
           - yarn install --frozen-lockfile --production=false
 
     - step:
