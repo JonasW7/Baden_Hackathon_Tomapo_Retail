@@ -11,8 +11,6 @@ pipelines:
           - corepack prepare yarn@4.10.3 --activate
           - yarn install --immutable
         artifacts:
-          - .yarn/**
-          - node_modules/**
           - .pnp.cjs
           - .pnp.loader.mjs
 
@@ -26,6 +24,8 @@ pipelines:
           - yarn build
         artifacts:
           - dist/**
+          - .pnp.cjs
+          - .pnp.loader.mjs  
 
     - step:
         name: Run Cypress E2E Tests
@@ -39,6 +39,7 @@ pipelines:
           - yarn dev &
           - yarn wait-on http://localhost:5173
 
+          - yarn cypress install    # ensures binary is present
           - yarn cypress run --browser chrome
 
 definitions:
