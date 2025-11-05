@@ -5,20 +5,26 @@ pipelines:
     - step:
         name: Install dependencies
         script:
-          - set NODE_ENV=development.
-          - yarn install --frozen-lockfile --production=false
+          - corepack enable
+          - corepack prepare yarn@4.10.3 --activate
+          - yarn --version
+          - yarn install --immutable
 
     - step:
         name: Build Vite app
         script:
+          - corepack enable
+          - corepack prepare yarn@4.10.3 --activate
           - yarn build
-          - ls -la dist
         artifacts:
           - dist/**
 
     - step:
         name: Run Cypress E2E Tests
         script:
+          - corepack enable
+          - corepack prepare yarn@4.10.3 --activate
+
           # Start Vite dev server in background
           - yarn dev &
 
