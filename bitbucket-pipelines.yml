@@ -1,0 +1,34 @@
+image: cypress/base:20.11.0 # Node + browsers preinstalled (for Cypress)
+
+options:
+  max-time: 20 # pipeline timeout in minutes
+
+pipelines:
+  default:
+  # Install dependencies
+    - step:
+        name: Install dependencies
+        caches:
+          - node
+        script:
+          - yarn install --frozen-lockfile
+
+    # Build the Vite app
+    - step:
+        name: Build Vite app
+        script:
+          - yarn build
+        artifacts:
+          - dist/**
+
+    - step:
+        name: Run Cypress E2E Tests
+        script:
+          # Start Vite dev server in background
+          - yarn dev &
+
+          # Wait for it to be ready
+          - npx wait-on http://localhost:5173
+
+          # Run Cypress headless tests
+          - yarn cy:run
