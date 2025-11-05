@@ -5,7 +5,7 @@ pipelines:
     - step:
         name: Install dependencies
         script:
-          - yarn install --frozen-lockfile
+          - yarn install --frozen-lockfile --production=false
 
     - step:
         name: Build Vite app
