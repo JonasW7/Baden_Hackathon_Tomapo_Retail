@@ -37,6 +37,8 @@ pipelines:
           - corepack enable
           - corepack prepare yarn@4.10.3 --activate
 
+          - yarn install --immutable
+
           - yarn dev &
           - yarn wait-on http://localhost:5173
 
