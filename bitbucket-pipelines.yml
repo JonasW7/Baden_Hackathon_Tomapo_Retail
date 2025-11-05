@@ -43,3 +43,5 @@ pipelines:
 definitions:
   caches:
     yarn: .yarn/cache
+    npm: $HOME/.npm
+    cypress: $HOME/.cache/Cypress
