@@ -11,6 +11,7 @@ pipelines:
         name: Build Vite app
         script:
           - yarn build
+        - ls -la dist
         artifacts:
           - dist/**
 
