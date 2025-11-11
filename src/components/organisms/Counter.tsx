@@ -4,7 +4,7 @@ export default function Counter() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex items-center gap-2">
       <p data-testid="count">Count: {count}</p>
       <button
         data-testid="increment"
