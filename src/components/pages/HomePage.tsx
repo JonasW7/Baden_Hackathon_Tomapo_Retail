@@ -1,6 +1,6 @@
 import Counter from "@/components/organisms/Counter";
 
-function HomePage() {
+export default function HomePage() {
   return (
     <>
       <div className="flex flex-col ">
@@ -10,5 +10,3 @@ function HomePage() {
     </>
   );
 }
-
-export default HomePage;

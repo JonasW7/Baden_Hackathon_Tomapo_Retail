@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useWeather } from "@/hooks/useWeather";
+import useWeather from "@/hooks/useWeather";
 
-function WeatherPage() {
+export default function WeatherPage() {
   const [city, setCity] = useState<string>("Zug");
   const { data: weather, error, isLoading } = useWeather(city);
 
@@ -37,5 +37,3 @@ function WeatherPage() {
     </div>
   );
 }
-
-export default WeatherPage;
