@@ -1,4 +1,4 @@
-import Counter from "@/components/organisms/Counter";
+import Counter from "@organisms/Counter";
 
 export default function HomePage() {
   return (

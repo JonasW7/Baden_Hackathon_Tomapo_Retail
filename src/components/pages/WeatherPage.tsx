@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useWeather from "@/hooks/useWeather";
+import { useWeather } from "@/hooks/useWeather";
 
 export default function WeatherPage() {
   const [city, setCity] = useState<string>("Zug");

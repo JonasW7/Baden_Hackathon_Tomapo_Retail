@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "@/components/pages/HomePage";
-import WeatherPage from "@/components/pages/WeatherPage";
-import RootTemplate from "@/components/templates/RootTemplate";
+import HomePage from "@pages/HomePage";
+import WeatherPage from "@pages/WeatherPage";
+import RootTemplate from "@templates/RootTemplate";
 
 const router = createBrowserRouter([
   {
