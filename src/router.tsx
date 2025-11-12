@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "@/components/pages/App";
-import WeatherStats from "@/components/pages/WeatherStats";
-import RootLayout from "@/components/templates/RootLayout";
+import HomePage from "@/components/pages/HomePage";
+import WeatherPage from "@/components/pages/WeatherPage";
+import RootTemplate from "@/components/templates/RootTemplate";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: RootLayout,
+    Component: RootTemplate,
     children: [
-      { index: true, Component: App },
-      { path: "weather", Component: WeatherStats },
+      { index: true, Component: HomePage },
+      { path: "weather", Component: WeatherPage },
     ],
   },
 ]);

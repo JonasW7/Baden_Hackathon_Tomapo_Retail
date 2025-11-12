@@ -2,8 +2,7 @@
 import Navbar from "@/components/organisms/Navbar";
 import { Outlet } from "react-router-dom";
 
-export default function RootLayout() {
-  console.log("test")
+export default function RootTemplate() {
   return (
     <>
       <Navbar />

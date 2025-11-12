@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-function WeatherStats() {
+function WeatherPage() {
   const [weather, setWeather] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const API_KEY = "YOUR_API_KEY_HERE";
-    const city = "Zurich";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+    const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+    const testcity = "Zug";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${testcity}&units=metric&appid=${API_KEY}`;
 
     fetch(url)
       .then((res) => {
@@ -23,11 +23,11 @@ function WeatherStats() {
 
   return (
     <div>
-      <h1>Weather in {weather.name}</h1>
+      <h1>Current weather in: {weather.name}</h1>
       <p>{weather.weather[0].description}</p>
       <p>{weather.main.temp}°C</p>
     </div>
   );
 }
 
-export default WeatherStats;
+export default WeatherPage;
