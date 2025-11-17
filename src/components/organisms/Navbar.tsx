@@ -6,9 +6,7 @@ export default function Navbar() {
       <NavLink to="/" end>
         Home
       </NavLink>
-      <NavLink to="/weather" >
-        Weather
-      </NavLink>
+      <NavLink to="/weather">Weather</NavLink>
     </nav>
   );
 }

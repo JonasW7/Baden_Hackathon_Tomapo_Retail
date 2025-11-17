@@ -1,4 +1,3 @@
-// src/components/layouts/RootLayout.tsx
 import Navbar from "@organisms/Navbar";
 import { Outlet } from "react-router-dom";
 

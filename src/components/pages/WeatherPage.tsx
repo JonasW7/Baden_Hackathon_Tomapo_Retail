@@ -14,6 +14,8 @@ export default function WeatherPage() {
 
   return (
     <div>
+      <h1 className="text-2xl font-bold mb-4">Weather</h1>
+
       <form onSubmit={handleSubmit}>
         <input
           name="city"
