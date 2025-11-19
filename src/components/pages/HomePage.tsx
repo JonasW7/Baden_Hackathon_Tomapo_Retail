@@ -1,5 +1,6 @@
 import Counter from "@organisms/Counter";
 import LanguageSwitch from "../organisms/LanguageSwitch";
+import { Button } from "../atoms-shadcn/button";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
         <h1 className="text-2xl font-bold mb-4">Home Page</h1>
         <Counter />
         <LanguageSwitch />
+        <Button> Click Me </Button>
       </div>
     </>
   );
