@@ -1,6 +1,6 @@
 import Counter from "@organisms/Counter";
 import LanguageSwitch from "../organisms/LanguageSwitch";
-import { Button } from "../atoms-shadcn/button";
+import { Button } from "@atoms/button";
 
 export default function HomePage() {
   return (

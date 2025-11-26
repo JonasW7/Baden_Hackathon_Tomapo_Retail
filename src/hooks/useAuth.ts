@@ -1,0 +1,1 @@
+// when a real authentication service is integrated this hook will be updated accordingly. Until then, userService.ts is used to simulate authentication.
