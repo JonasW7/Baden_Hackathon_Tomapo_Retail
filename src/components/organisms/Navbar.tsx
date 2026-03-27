@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { Home, Cloud } from "lucide-react";
+import { Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,8 +13,10 @@ import {
 } from "@/components/shadcn/sidebar";
 
 const navItems = [
-  { to: "/", label: "Home", icon: Home, end: true },
-  { to: "/weather", label: "Weather", icon: Cloud },
+  { to: "/", label: "Dashboard", icon: Home, end: true },
+  { to: "/issues-production", label: "Production Issues", icon: Home },
+  { to: "/issues-user", label: "User Issues", icon: Home },
+  { to: "/recall-center", label: "Recall center", icon: Home },
 ];
 
 export default function Navbar() {
