@@ -1,5 +1,4 @@
 import Counter from "@organisms/Counter";
-import LanguageSwitch from "../organisms/LanguageSwitch";
 import { Button } from "@atoms/button";
 
 export default function HomePage() {
@@ -8,7 +7,6 @@ export default function HomePage() {
       <div className="flex flex-col ">
         <h1 className="text-2xl font-bold mb-4">Home Page</h1>
         <Counter />
-        <LanguageSwitch />
         <Button> Click Me </Button>
       </div>
     </>
