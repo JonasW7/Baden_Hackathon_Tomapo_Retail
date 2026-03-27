@@ -2,8 +2,8 @@ import { Users, Package, Warehouse, RotateCcw } from "lucide-react";
 import {
   IssueTable,
   type IssueColumn,
-} from "@/components/molecules/IssueTable";
-import { SeverityBadge } from "@/components/atoms/SeverityBadge";
+} from "@/components/molecules/IssueTableOverview";
+import { SeverityBar } from "@/components/atoms/SeverityBar";
 import { StatCard } from "@/components/molecules/StatCard";
 
 // --- Mock Data ---
@@ -72,16 +72,17 @@ const userIssues: UserIssue[] = [
 
 // --- Column Definitions ---
 const productionColumns: IssueColumn<ProductionIssue>[] = [
+  { header: "", render: (r) => <SeverityBar label={r.severity} />, className: "w-px pr-4"  },
   {
     header: "Batch ID",
     render: (r) => <span className="font-mono text-xs">{r.id}</span>,
   },
   { header: "Company", render: (r) => r.company },
   { header: "Issue Type", render: (r) => r.type },
-  { header: "Severity", render: (r) => <SeverityBadge label={r.severity} /> },
 ];
 
 const userColumns: IssueColumn<UserIssue>[] = [
+  { header: "", render: (r) => <SeverityBar label={r.severity} /> },
   {
     header: "Report ID",
     render: (r) => <span className="font-mono text-xs">{r.id}</span>,
@@ -89,12 +90,11 @@ const userColumns: IssueColumn<UserIssue>[] = [
   { header: "User", render: (r) => r.user },
   { header: "Product", render: (r) => r.product },
   { header: "Issue", render: (r) => r.issue },
-  { header: "Severity", render: (r) => <SeverityBadge label={r.severity} /> },
   {
     header: "Batch Match",
     render: (r) => (
       <span
-        className={`font-semibold ${r.match ? "text-green-600" : "text-red-500"}`}
+        className={`font-semibold ${r.match ? "text-severity-low-foreground" : "text-destructive-foreground"}`}
       >
         {r.match ? "Yes" : "No"}
       </span>
@@ -138,7 +138,7 @@ export default function Dashboard() {
 
       {/* Production Issues */}
       <IssueTable
-        title="Incoming Issues from Production"
+        title="Latest Issues from Production"
         viewAllTo="/issues-production"
         columns={productionColumns}
         rows={productionIssues}
@@ -147,7 +147,7 @@ export default function Dashboard() {
 
       {/* User Issues */}
       <IssueTable
-        title="Incoming Issues from Users"
+        title="Latest Issues from Users"
         viewAllTo="/issues-user"
         columns={userColumns}
         rows={userIssues}
