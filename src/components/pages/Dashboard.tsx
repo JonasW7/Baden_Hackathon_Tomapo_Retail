@@ -1,17 +1,9 @@
-import { NavLink } from "react-router-dom";
-import {
-  AlertTriangle,
-  Users,
-  Package,
-  Warehouse,
-  RotateCcw,
-  ArrowRight,
-} from "lucide-react";
+import { Users, Package, Warehouse, RotateCcw } from "lucide-react";
 import {
   IssueTable,
-  Badge,
   type IssueColumn,
 } from "@/components/molecules/IssueTable";
+import { SeverityBadge } from "@/components/atoms/SeverityBadge";
 import { StatCard } from "@/components/molecules/StatCard";
 
 // --- Mock Data ---
@@ -27,13 +19,7 @@ type UserIssue = {
   product: string;
   issue: string;
   severity: string;
-  match: string;
-};
-type ActiveRecall = {
-  product: string;
-  batch: string;
-  units: number;
-  notified: number;
+  match: boolean;
 };
 
 const productionIssues: ProductionIssue[] = [
@@ -64,7 +50,7 @@ const userIssues: UserIssue[] = [
     product: "Organic Yogurt",
     issue: "Foreign Object",
     severity: "High",
-    match: "94%",
+    match: true,
   },
   {
     id: "RPT-102",
@@ -72,7 +58,7 @@ const userIssues: UserIssue[] = [
     product: "Whole Milk",
     issue: "Off Taste",
     severity: "Medium",
-    match: "78%",
+    match: true,
   },
   {
     id: "RPT-103",
@@ -80,22 +66,7 @@ const userIssues: UserIssue[] = [
     product: "Cheese Block",
     issue: "Mold",
     severity: "High",
-    match: "89%",
-  },
-];
-
-const activeRecalls: ActiveRecall[] = [
-  {
-    product: "Chocolate Hazelnut Spread",
-    batch: "CHO-2024-11",
-    units: 2000,
-    notified: 1450,
-  },
-  {
-    product: "Organic Apple Juice",
-    batch: "APJ-2024-09",
-    units: 850,
-    notified: 720,
+    match: false,
   },
 ];
 
@@ -107,7 +78,7 @@ const productionColumns: IssueColumn<ProductionIssue>[] = [
   },
   { header: "Company", render: (r) => r.company },
   { header: "Issue Type", render: (r) => r.type },
-  { header: "Severity", render: (r) => <Badge label={r.severity} /> },
+  { header: "Severity", render: (r) => <SeverityBadge label={r.severity} /> },
 ];
 
 const userColumns: IssueColumn<UserIssue>[] = [
@@ -118,12 +89,14 @@ const userColumns: IssueColumn<UserIssue>[] = [
   { header: "User", render: (r) => r.user },
   { header: "Product", render: (r) => r.product },
   { header: "Issue", render: (r) => r.issue },
-  { header: "Severity", render: (r) => <Badge label={r.severity} /> },
+  { header: "Severity", render: (r) => <SeverityBadge label={r.severity} /> },
   {
-    header: "AI Batch Match",
+    header: "Batch Match",
     render: (r) => (
-      <span className="font-semibold text-sidebar-primary-foreground">
-        {r.match}
+      <span
+        className={`font-semibold ${r.match ? "text-green-600" : "text-red-500"}`}
+      >
+        {r.match ? "Yes" : "No"}
       </span>
     ),
   },
@@ -141,25 +114,25 @@ export default function Dashboard() {
           icon={Warehouse}
           label="Production Issues"
           value={7}
-          color="bg-orange-100 text-orange-600"
+          color="bg-severity-high text-severity-high-foreground"
         />
         <StatCard
           icon={Users}
           label="User Issues"
           value={12}
-          color="bg-blue-100 text-blue-600"
+          color="bg-severity-info text-severity-info-foreground"
         />
         <StatCard
           icon={RotateCcw}
           label="Recalls Issued"
           value={2}
-          color="bg-red-100 text-red-600"
+          color="bg-destructive text-destructive-foreground"
         />
         <StatCard
           icon={Package}
           label="Batches Tracked"
           value={348}
-          color="bg-green-100 text-green-700"
+          color="bg-severity-low text-severity-low-foreground"
         />
       </div>
 
@@ -180,42 +153,6 @@ export default function Dashboard() {
         rows={userIssues}
         getKey={(r) => r.id}
       />
-
-      {/* Recall Center */}
-      <div className="bg-card rounded-xl shadow-sm p-5">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-base font-semibold text-foreground">
-            Recall Center
-          </h2>
-          <NavLink
-            to="/recall-center"
-            className="flex items-center gap-1 text-sm text-sidebar-primary-foreground hover:underline cursor-pointer"
-          >
-            View all <ArrowRight className="w-3.5 h-3.5" />
-          </NavLink>
-        </div>
-        <div className="space-y-3">
-          {activeRecalls.map((recall) => (
-            <div
-              key={recall.batch}
-              className="flex items-center justify-between rounded-lg bg-muted px-4 py-3"
-            >
-              <div>
-                <p className="font-medium text-sm">
-                  Active recall:{" "}
-                  <span className="font-bold">{recall.product}</span>
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Batch {recall.batch} · {recall.units.toLocaleString()} units
-                  in circulation · {recall.notified.toLocaleString()} users
-                  notified
-                </p>
-              </div>
-              <Badge label="Critical" />
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

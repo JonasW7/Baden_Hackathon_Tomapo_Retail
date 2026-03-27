@@ -51,7 +51,7 @@ export default function AppSidebar() {
                         isActive={isActive}
                         size="lg"
                         tooltip={label}
-                        className="group-data-[collapsible=icon]:justify-center cursor-pointer"
+                        className="group-data-[collapsible=icon]:justify-center cursor-pointer data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
                       >
                         <Icon />
                         <span className="group-data-[collapsible=icon]:hidden">

@@ -8,21 +8,7 @@ import {
   TableHead,
   TableCell,
 } from "@/components/shadcn/table";
-
-const severityColor: Record<string, string> = {
-  Critical: "bg-red-100 text-red-700",
-  High: "bg-orange-100 text-orange-700",
-  Medium: "bg-yellow-100 text-yellow-700",
-  Low: "bg-green-100 text-green-700",
-};
-
-function Badge({ label }: { label: string }) {
-  return (
-    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${severityColor[label] ?? "bg-muted text-muted-foreground"}`}>
-      {label}
-    </span>
-  );
-}
+import { SeverityBadge } from "@/components/atoms/SeverityBadge";
 
 export type IssueColumn<T> = {
   header: string;
@@ -71,4 +57,4 @@ export function IssueTable<T>({ title, viewAllTo, columns, rows, getKey }: Issue
   );
 }
 
-export { Badge };
+export { SeverityBadge };
