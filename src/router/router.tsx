@@ -1,13 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "@/components/pages/Dashboard";
-import WeatherPage from "@pages/WeatherPage";
 import RootTemplate from "@templates/RootTemplate";
-import PrivateTemplate from "@/components/templates/PrivateTemplate";
+// import PrivateTemplate from "@/components/templates/PrivateTemplate";
 import LoginPage from "@/components/pages/LoginPage";
 import ProductionIssues from "@/components/pages/ProductionIssues";
 import RecallCenter from "@/components/pages/RecallCenter";
 import UserIssues from "@/components/pages/UserIssues";
-import authMiddleware from "./middlewares/authMiddleware";
+// import authMiddleware from "./middlewares/authMiddleware";
 
 const router = createBrowserRouter([
   {

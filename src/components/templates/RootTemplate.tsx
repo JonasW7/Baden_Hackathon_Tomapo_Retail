@@ -1,4 +1,4 @@
-import Navbar from "@organisms/Navbar";
+import Navbar from "@/components/organisms/Sidebar";
 import { Outlet } from "react-router-dom";
 import { SidebarProvider } from "@/components/shadcn/sidebar";
 
