@@ -1,5 +1,5 @@
 import Counter from "@organisms/Counter";
-import { Button } from "@atoms/button";
+import { Button } from "@/components/shadcn/button";
 
 export default function HomePage() {
   return (
