@@ -21,7 +21,12 @@ type IssueTableProps<T> = {
   getKey: (row: T) => string;
 };
 
-export function IssueTableFull<T>({ title, columns, rows, getKey }: IssueTableProps<T>) {
+export function IssueTableFull<T>({
+  title,
+  columns,
+  rows,
+  getKey,
+}: IssueTableProps<T>) {
   return (
     <div className="bg-card rounded-xl shadow-sm p-5">
       <div className="flex items-center justify-between mb-3">
@@ -31,15 +36,19 @@ export function IssueTableFull<T>({ title, columns, rows, getKey }: IssueTablePr
         <TableHeader>
           <TableRow>
             {columns.map((col) => (
-              <TableHead key={col.header} className={col.className}>{col.header}</TableHead>
+              <TableHead key={col.header} className={col.className}>
+                {col.header}
+              </TableHead>
             ))}
           </TableRow>
         </TableHeader>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={getKey(row)}>
+            <TableRow key={getKey(row)} className="text-nowrap">
               {columns.map((col) => (
-                <TableCell key={col.header} className={col.className}>{col.render(row)}</TableCell>
+                <TableCell key={col.header} className={col.className}>
+                  {col.render(row)}
+                </TableCell>
               ))}
             </TableRow>
           ))}
