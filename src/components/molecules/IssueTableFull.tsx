@@ -19,6 +19,7 @@ type IssueTableProps<T> = {
   columns: IssueColumn<T>[];
   rows: T[];
   getKey: (row: T) => string;
+  onRowClick?: (row: T) => void;
 };
 
 export function IssueTableFull<T>({
@@ -26,6 +27,7 @@ export function IssueTableFull<T>({
   columns,
   rows,
   getKey,
+  onRowClick,
 }: IssueTableProps<T>) {
   return (
     <div className="bg-card rounded-xl shadow-sm p-5">
@@ -44,7 +46,11 @@ export function IssueTableFull<T>({
         </TableHeader>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={getKey(row)} className="text-nowrap">
+            <TableRow
+              key={getKey(row)}
+              className={`text-nowrap ${onRowClick ? "cursor-pointer hover:bg-muted/60" : ""}`}
+              onClick={() => onRowClick?.(row)}
+            >
               {columns.map((col) => (
                 <TableCell key={col.header} className={col.className}>
                   {col.render(row)}
