@@ -6,7 +6,7 @@ export default function RootTemplate() {
   return (
     <SidebarProvider>
       <Navbar />
-      <main className="flex-1 p-4">
+      <main className="flex-1 p-6">
         <Outlet />
       </main>
     </SidebarProvider>

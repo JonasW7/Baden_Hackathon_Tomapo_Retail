@@ -87,7 +87,7 @@ export default function ProductionIssues() {
   const [selected, setSelected] = useState<ProductionIssue | null>(null);
 
   return (
-    <>
+    <div className="space-y-8">
       <IssueTableFull
         title="Latest Issues from Production"
         columns={productionColumns}
@@ -141,6 +141,6 @@ export default function ProductionIssues() {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-    </>
+    </div>
   );
 }

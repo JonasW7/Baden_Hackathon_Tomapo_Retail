@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
 import { RecallList, type Recall } from "@/components/organisms/RecallList";
 
 type RecallStatus = "Active" | "Monitoring" | "Resolved";
@@ -51,16 +50,7 @@ export default function RecallCenter() {
       : recalls.filter((r) => r.status === activeFilter);
 
   return (
-    <div className="p-6 space-y-6 max-w-5xl mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-foreground">Recall Center</h1>
-        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors cursor-pointer">
-          <Plus className="w-4 h-4" />
-          New Recall
-        </button>
-      </div>
-
+    <div className="space-y-8">
       {/* Status Filter */}
       <div className="flex gap-2">
         {filters.map((f) => (

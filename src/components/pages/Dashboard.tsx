@@ -72,7 +72,11 @@ const userIssues: UserIssue[] = [
 
 // --- Column Definitions ---
 const productionColumns: IssueColumn<ProductionIssue>[] = [
-  { header: "", render: (r) => <SeverityBar label={r.severity} />, className: "w-px pr-4"  },
+  {
+    header: "",
+    render: (r) => <SeverityBar label={r.severity} />,
+    className: "w-px pr-4",
+  },
   {
     header: "Batch ID",
     render: (r) => <span className="font-mono text-xs">{r.id}</span>,
@@ -105,9 +109,7 @@ const userColumns: IssueColumn<UserIssue>[] = [
 // --- Dashboard ---
 export default function Dashboard() {
   return (
-    <div className="p-6 space-y-8 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-
+    <div className="space-y-8">
       {/* Stat Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
