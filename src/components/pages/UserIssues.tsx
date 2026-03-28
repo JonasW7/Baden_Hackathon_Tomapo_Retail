@@ -15,7 +15,7 @@ export const userIssues: IssueUser[] = [
     type: "Quality",
     severity: "Low",
     date: "2026-03-20",
-    title: "Community: Ovomaltine — Klumpen im Pulver",
+    title: "Ovomaltine — Klumpen im Pulver",
     description:
       "Habe heute eine frische Dose Ovomaltine geöffnet (Charge OVO-2026-0301, MHD 08/2027). Das Pulver enthält grössere Klumpen, die sich auch beim Rühren nicht auflösen. Könnte auf ein Feuchtigkeitsproblem beim Abfüllen oder Transport hinweisen.",
   },
@@ -35,7 +35,7 @@ const columns: IssueColumn<IssueUser>[] = [
   { header: "Company", render: (r) => r.title },
   { header: "Issue Type", render: (r) => r.type },
   {
-    header: "Report ID",
+    header: "Batch ID",
     render: (r) => <span className="font-mono">{r.batchid}</span>,
   },
 ];
@@ -48,7 +48,7 @@ export default function UserIssues() {
   return (
     <div className="space-y-8">
       <IssueTableFull
-        title="User Reported Issues"
+        title="Latest Issues from Users"
         columns={columns}
         rows={userIssues}
         getKey={(r) => r.batchid}

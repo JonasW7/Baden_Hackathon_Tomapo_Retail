@@ -35,7 +35,7 @@ const userColumns: IssueColumn<IssueUser>[] = [
     className: "w-px pr-4",
   },
   {
-    header: "Report ID",
+    header: "Batch ID",
     render: (r) => <span className="font-mono text-xs">{r.batchid}</span>,
     className: "w-40",
   },
