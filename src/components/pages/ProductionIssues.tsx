@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import { useAlert } from "@/hooks/useAlert";
 import {
   IssueTableFull,
   SeverityBadge,
