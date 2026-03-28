@@ -38,7 +38,7 @@ export default function AppSidebar() {
     <Sidebar collapsible="icon" className="select-none">
       <SidebarHeader className="p-3 flex flex-row items-center gap-3 group-data-[collapsible=icon]:justify-center">
         {/* Logo mark */}
-        <div className="shrink-0 w-16 h-16 rounded-lg  flex items-center justify-center overflow-hidden">
+        <div className="shrink-0 w-16 h-16 group-data-[collapsible=icon]:w-8 group-data-[collapsible=icon]:h-8 rounded-lg flex items-center justify-center overflow-hidden">
           <img
             src={logo}
             alt="Tomapo"

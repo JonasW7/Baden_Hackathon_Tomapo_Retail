@@ -49,6 +49,7 @@ export default function LoginPage() {
           <Input type="password" placeholder="••••••••" />
           <Button
             type="submit"
+            variant="secondary"
             className="w-full cursor-pointer mt-1"
             disabled={loading}
           >
