@@ -10,7 +10,7 @@ React dashboard for managing product recalls and quality issues across productio
 ## Setup
 
 ```bash
-npm install
+yarn install
 ```
 
 Create a `.env` file in the project root:
