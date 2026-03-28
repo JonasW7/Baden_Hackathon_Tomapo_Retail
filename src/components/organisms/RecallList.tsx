@@ -9,15 +9,10 @@ export type Recall = {
   units: number;
   resolved: number;
   status: RecallStatus;
+  severity: string;
   title: string;
   description: string;
   date: string;
-};
-
-const statusColor: Record<RecallStatus, string> = {
-  Active: "Critical",
-  Monitoring: "High",
-  Resolved: "Low",
 };
 
 type RecallListProps = {
@@ -37,7 +32,7 @@ export function RecallList({ recalls, onRowClick }: RecallListProps) {
           <div className="space-y-1">
             <div className="flex items-center gap-3">
               <p className="font-semibold text-foreground">{recall.product}</p>
-              <SeverityBadge label={statusColor[recall.status]} />
+              <SeverityBadge label={recall.severity} />
             </div>
             <p className="text-xs text-muted-foreground font-mono">
               {recall.batch}

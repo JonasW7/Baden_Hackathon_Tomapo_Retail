@@ -8,15 +8,16 @@ type RecallStatus = "Active" | "Monitoring" | "Resolved";
 const recalls: Recall[] = [
   {
     id: "RCL-001",
-    product: "Chocolate Hazelnut Spread",
-    batch: "CHO-2024-11",
-    units: 2000,
-    resolved: 1450,
+    product: "Lindt Excellence 85%",
+    batch: "LINDT-85-2026-0201",
+    units: 5000,
+    resolved: 0,
     status: "Active",
-    title: "Temperature breach during transport — CHO-2024-11",
+    severity: "High",
+    title: "Rückruf: Lindt Excellence 85% — mögliche Fremdkörper",
     description:
-      "Batch CHO-2024-11 was exposed to temperatures exceeding 35°C during last-mile delivery on 2026-03-20. Potential degradation of product quality and safety. Immediate consumer notification required.",
-    date: "2026-03-21",
+      "Das Bundesamt für Lebensmittelsicherheit (BLV) hat Lindt & Sprüngli aufgefordert, die Charge LINDT-85-2026-0201 zurückzurufen. Bei Stichprobenkontrollen wurden in vereinzelten Tafeln Metallsplitter nachgewiesen, die beim Reinigungsprozess des Conchierers abgelöst wurden. Betroffen ist ausschliesslich die Charge 2026-0201 mit Mindesthaltbarkeitsdatum 01.2028.",
+    date: "2026-03-12",
   },
   {
     id: "RCL-002",
@@ -25,6 +26,7 @@ const recalls: Recall[] = [
     units: 850,
     resolved: 720,
     status: "Active",
+    severity: "Critical",
     title: "Undisclosed allergen — APJ-2024-09",
     description:
       "Lab analysis confirmed traces of sulphites not declared on the label. Affects customers with sulphite sensitivity. Retailer shelves cleared on 2026-03-22.",
@@ -37,6 +39,7 @@ const recalls: Recall[] = [
     units: 1200,
     resolved: 1200,
     status: "Resolved",
+    severity: "Low",
     title: "Packaging seal defect — WGC-2024-07",
     description:
       "A faulty sealing run caused approximately 12% of units to have compromised packaging, increasing risk of contamination. All units have been retrieved and destroyed.",
@@ -49,6 +52,7 @@ const recalls: Recall[] = [
     units: 400,
     resolved: 280,
     status: "Monitoring",
+    severity: "Medium",
     title: "Possible E. coli contamination — FSB-2024-10",
     description:
       "Two consumer reports linked to this batch. Precautionary recall issued while lab results are pending. Monitoring ongoing — no confirmed cases as of 2026-03-27.",

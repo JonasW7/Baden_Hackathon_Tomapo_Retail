@@ -46,7 +46,7 @@ export function RecallDetailSheet({ recall, onClose }: Props) {
         <SheetHeader className="pb-2">
           <div className="flex items-center gap-3">
             <SheetTitle className="font-mono text-base">
-              Recall of {recall?.id}
+              {recall?.id}
             </SheetTitle>
           </div>
           <SheetDescription className="text-muted-foreground">
