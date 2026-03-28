@@ -1,5 +1,13 @@
 import { NavLink } from "react-router";
-import { LayoutDashboard, Warehouse, Users, RotateCcw, Sun, Moon } from "lucide-react";
+import {
+  LayoutDashboard,
+  Warehouse,
+  Users,
+  RotateCcw,
+  Sun,
+  Moon,
+} from "lucide-react";
+import logo from "@/assets/logo/Tomapo_light.png";
 import { useTheme } from "@/context/themeProvider";
 import { Button } from "@/components/shadcn/button";
 import {
@@ -30,10 +38,13 @@ export default function AppSidebar() {
     <Sidebar collapsible="icon" className="select-none">
       <SidebarHeader className="p-3 flex flex-row items-center gap-3 group-data-[collapsible=icon]:justify-center">
         {/* Logo mark */}
-        <div className="shrink-0 w-8 h-8 rounded-lg bg-sidebar-primary flex items-center justify-center font-bold text-sidebar-primary-foreground text-sm">
-          T
+        <div className="shrink-0 w-16 h-16 rounded-lg  flex items-center justify-center overflow-hidden">
+          <img
+            src={logo}
+            alt="Tomapo"
+            className="w-full h-full object-contain"
+          />
         </div>
-        {/* Text hidden when collapsed */}
         <span className="font-bold text-lg text-sidebar-foreground group-data-[collapsible=icon]:hidden">
           Tomapo
         </span>
@@ -44,7 +55,7 @@ export default function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map(({ to, label, icon: Icon, end }) => (
-                <SidebarMenuItem key={to} >
+                <SidebarMenuItem key={to}>
                   <NavLink to={to} end={end}>
                     {({ isActive }) => (
                       <SidebarMenuButton
@@ -75,7 +86,7 @@ export default function AppSidebar() {
         >
           {isDark ? <Sun /> : <Moon />}
         </Button>
-        <SidebarTrigger className="cursor-pointer h-12 w-12 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8"/>
+        <SidebarTrigger className="cursor-pointer h-12 w-12 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8" />
       </SidebarFooter>
     </Sidebar>
   );
