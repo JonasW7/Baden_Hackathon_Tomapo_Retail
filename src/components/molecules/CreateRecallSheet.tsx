@@ -13,10 +13,10 @@ import { Button } from "../shadcn/button";
 import { Separator } from "../shadcn/separator";
 import { Input } from "../shadcn/input";
 import { SeverityBadge } from "../atoms/SeverityBadge";
-import type { IssueProd } from "./IssueDetailSheet";
+import type { IssueProd, IssueUser } from "./IssueDetailSheet";
 
 type Props = {
-  issue: IssueProd;
+  issue: IssueProd | IssueUser;
   open: boolean;
   onClose: () => void;
   tag?: string;
@@ -123,7 +123,9 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
                   label="Batch ID"
                   value={<span className="font-mono">{issue.batchid}</span>}
                 />
-                <FixedField label="Company" value={issue.company} />
+                {"company" in issue && issue.company && (
+                  <FixedField label="Company" value={issue.company} />
+                )}
                 <FixedField label="Issue Type" value={issue.type} />
                 <FixedField label="Date" value={issue.date} />
               </div>

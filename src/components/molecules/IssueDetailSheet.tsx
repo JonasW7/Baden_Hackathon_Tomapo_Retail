@@ -114,7 +114,7 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
         </SheetContent>
       </Sheet>
 
-      {issue && isIssue(issue) && (
+      {issue && (
         <CreateRecallSheet
           issue={issue}
           open={recallOpen}
