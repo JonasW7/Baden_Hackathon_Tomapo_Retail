@@ -16,6 +16,7 @@ export async function getAlert(alertId) {
 }
 
 export async function createAlert(payload) {
+  console.log(payload);
   const response = await fetch(`${BASE_URL}/alerts`, {
     method: "POST",
     headers: authHeaders(),

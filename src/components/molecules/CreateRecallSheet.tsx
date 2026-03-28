@@ -153,7 +153,7 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
                   batchId: issue.batchid,
                   severity: issue.severity.toLowerCase(),
                   category: issue.type,
-                  source: "official",
+                  source: "retailer",
                 });
                 onClose();
               } finally {
