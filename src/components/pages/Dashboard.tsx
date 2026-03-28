@@ -6,73 +6,14 @@ import {
 } from "@/components/molecules/IssueTableOverview";
 import { SeverityBar } from "@/components/atoms/SeverityBar";
 import { StatCard } from "@/components/molecules/StatCard";
+import { productionIssues } from "./ProductionIssues";
+import { userIssues } from "./UserIssues";
+import type {
+  IssueProd,
+  IssueUser,
+} from "@/components/molecules/IssueDetailSheet";
 
-// --- Mock Data ---
-type ProductionIssue = {
-  batchid: string;
-  company: string;
-  type: string;
-  severity: string;
-};
-type UserIssue = {
-  batchid: string;
-  user: string;
-  product: string;
-  issue: string;
-  severity: string;
-  match: boolean;
-};
-
-const productionIssues: ProductionIssue[] = [
-  {
-    batchid: "BATCH-001",
-    company: "FreshFarms GmbH",
-    type: "Temperature Deviation",
-    severity: "High",
-  },
-  {
-    batchid: "BATCH-002",
-    company: "AlpenMilch AG",
-    type: "Contamination Risk",
-    severity: "Critical",
-  },
-  {
-    batchid: "BATCH-003",
-    company: "GrainCo Ltd",
-    type: "Packaging Defect",
-    severity: "Low",
-  },
-];
-
-const userIssues: UserIssue[] = [
-  {
-    batchid: "USR-001",
-    user: "Max M.",
-    product: "Organic Yogurt",
-    issue: "Foreign Object",
-    severity: "High",
-    match: true,
-  },
-  {
-    batchid: "USR-002",
-    user: "Anna K.",
-    product: "Whole Milk",
-    issue: "Off Taste",
-    severity: "Medium",
-    match: true,
-  },
-  {
-    batchid: "USR-003",
-    user: "Tom B.",
-    product: "Cheese Block",
-    issue: "Mold",
-    severity: "High",
-    match: false,
-  },
-];
-
-// --- Column Definitions ---
-const productionColumns: IssueColumn<ProductionIssue>[] = [
+const productionColumns: IssueColumn<IssueProd>[] = [
   {
     header: "",
     render: (r) => <SeverityBar label={r.severity} />,
@@ -81,33 +22,27 @@ const productionColumns: IssueColumn<ProductionIssue>[] = [
   {
     header: "Batch ID",
     render: (r) => <span className="font-mono text-xs">{r.batchid}</span>,
+    className: "w-40",
   },
   { header: "Company", render: (r) => r.company },
-  { header: "Issue Type", render: (r) => r.type },
+  { header: "Issue Type", render: (r) => r.type, className: "w-36" },
 ];
 
-const userColumns: IssueColumn<UserIssue>[] = [
-  { header: "", render: (r) => <SeverityBar label={r.severity} /> },
+const userColumns: IssueColumn<IssueUser>[] = [
+  {
+    header: "",
+    render: (r) => <SeverityBar label={r.severity} />,
+    className: "w-px pr-4",
+  },
   {
     header: "Report ID",
     render: (r) => <span className="font-mono text-xs">{r.batchid}</span>,
+    className: "w-40",
   },
-  { header: "User", render: (r) => r.user },
-  { header: "Product", render: (r) => r.product },
-  { header: "Issue", render: (r) => r.issue },
-  {
-    header: "Batch Match",
-    render: (r) => (
-      <span
-        className={`font-semibold ${r.match ? "text-severity-low-foreground" : "text-destructive-foreground"}`}
-      >
-        {r.match ? "Yes" : "No"}
-      </span>
-    ),
-  },
+  { header: "Title", render: (r) => r.title },
+  { header: "Issue Type", render: (r) => r.type, className: "w-36" },
 ];
 
-// --- Dashboard ---
 export default function Dashboard() {
   const navigate = useNavigate();
 
@@ -118,19 +53,19 @@ export default function Dashboard() {
         <StatCard
           icon={Warehouse}
           label="Production Issues"
-          value={7}
+          value={productionIssues.length}
           color="bg-severity-high text-severity-high-foreground"
         />
         <StatCard
           icon={Users}
           label="User Issues"
-          value={12}
+          value={userIssues.length}
           color="bg-severity-info text-severity-info-foreground"
         />
         <StatCard
           icon={RotateCcw}
           label="Recalls Issued"
-          value={2}
+          value={4}
           color="bg-destructive text-destructive-foreground"
         />
         <StatCard

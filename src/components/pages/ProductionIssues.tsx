@@ -9,7 +9,7 @@ import {
   type IssueProd,
 } from "../molecules/IssueDetailSheet";
 
-const productionIssues: IssueProd[] = [
+export const productionIssues: IssueProd[] = [
   {
     batchid: "LINDT-85-2026-0201",
     company: "Lindt",

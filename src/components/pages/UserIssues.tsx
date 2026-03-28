@@ -9,7 +9,7 @@ import {
   type IssueUser,
 } from "../molecules/IssueDetailSheet";
 
-const userIssues: IssueUser[] = [
+export const userIssues: IssueUser[] = [
   {
     batchid: "OVO-2026-0301",
     type: "Quality",
