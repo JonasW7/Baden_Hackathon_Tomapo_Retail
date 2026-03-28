@@ -9,13 +9,13 @@ import { StatCard } from "@/components/molecules/StatCard";
 
 // --- Mock Data ---
 type ProductionIssue = {
-  id: string;
+  batchid: string;
   company: string;
   type: string;
   severity: string;
 };
 type UserIssue = {
-  id: string;
+  batchid: string;
   user: string;
   product: string;
   issue: string;
@@ -25,19 +25,19 @@ type UserIssue = {
 
 const productionIssues: ProductionIssue[] = [
   {
-    id: "BATCH-001",
+    batchid: "BATCH-001",
     company: "FreshFarms GmbH",
     type: "Temperature Deviation",
     severity: "High",
   },
   {
-    id: "BATCH-002",
+    batchid: "BATCH-002",
     company: "AlpenMilch AG",
     type: "Contamination Risk",
     severity: "Critical",
   },
   {
-    id: "BATCH-003",
+    batchid: "BATCH-003",
     company: "GrainCo Ltd",
     type: "Packaging Defect",
     severity: "Low",
@@ -46,7 +46,7 @@ const productionIssues: ProductionIssue[] = [
 
 const userIssues: UserIssue[] = [
   {
-    id: "USR-001",
+    batchid: "USR-001",
     user: "Max M.",
     product: "Organic Yogurt",
     issue: "Foreign Object",
@@ -54,7 +54,7 @@ const userIssues: UserIssue[] = [
     match: true,
   },
   {
-    id: "USR-002",
+    batchid: "USR-002",
     user: "Anna K.",
     product: "Whole Milk",
     issue: "Off Taste",
@@ -62,7 +62,7 @@ const userIssues: UserIssue[] = [
     match: true,
   },
   {
-    id: "USR-003",
+    batchid: "USR-003",
     user: "Tom B.",
     product: "Cheese Block",
     issue: "Mold",
@@ -80,7 +80,7 @@ const productionColumns: IssueColumn<ProductionIssue>[] = [
   },
   {
     header: "Batch ID",
-    render: (r) => <span className="font-mono text-xs">{r.id}</span>,
+    render: (r) => <span className="font-mono text-xs">{r.batchid}</span>,
   },
   { header: "Company", render: (r) => r.company },
   { header: "Issue Type", render: (r) => r.type },
@@ -90,7 +90,7 @@ const userColumns: IssueColumn<UserIssue>[] = [
   { header: "", render: (r) => <SeverityBar label={r.severity} /> },
   {
     header: "Report ID",
-    render: (r) => <span className="font-mono text-xs">{r.id}</span>,
+    render: (r) => <span className="font-mono text-xs">{r.batchid}</span>,
   },
   { header: "User", render: (r) => r.user },
   { header: "Product", render: (r) => r.product },
@@ -147,8 +147,8 @@ export default function Dashboard() {
         viewAllTo="/issues-production"
         columns={productionColumns}
         rows={productionIssues}
-        getKey={(r) => r.id}
-        onRowClick={(r) => navigate(`/issues-production?issue=${r.id}`)}
+        getKey={(r) => r.batchid}
+        onRowClick={(r) => navigate(`/issues-production?issue=${r.batchid}`)}
       />
 
       {/* User Issues */}
@@ -157,8 +157,8 @@ export default function Dashboard() {
         viewAllTo="/issues-user"
         columns={userColumns}
         rows={userIssues}
-        getKey={(r) => r.id}
-        onRowClick={(r) => navigate(`/issues-user?issue=${r.id}`)}
+        getKey={(r) => r.batchid}
+        onRowClick={(r) => navigate(`/issues-user?issue=${r.batchid}`)}
       />
     </div>
   );

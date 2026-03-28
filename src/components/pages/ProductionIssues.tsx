@@ -9,21 +9,21 @@ import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
 
 const productionIssues: Issue[] = [
   {
-    id: "BATCH-001",
+    batchid: "BATCH-001",
     company: "FreshFarms GmbH",
     type: "Temperature Deviation",
     severity: "High",
     date: "2026-03-25",
   },
   {
-    id: "BATCH-002",
+    batchid: "BATCH-002",
     company: "AlpenMilch AG",
     type: "Contamination Risk",
     severity: "Critical",
     date: "2026-03-26",
   },
   {
-    id: "BATCH-003",
+    batchid: "BATCH-003",
     company: "GrainCo Ltd",
     type: "Packaging Defect",
     severity: "Low",
@@ -46,17 +46,15 @@ const columns: IssueColumn<Issue>[] = [
   { header: "Issue Type", render: (r) => r.type },
   {
     header: "Batch ID",
-    render: (r) => <span className="font-mono">{r.id}</span>,
+    render: (r) => <span className="font-mono">{r.batchid}</span>,
   },
 ];
 
 export default function ProductionIssues() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedId = searchParams.get("issue");
-  const selected = productionIssues.find((i) => i.id === selectedId) ?? null;
-
-  const alert = useAlert("69c71442e49228ff6f63b5f4");
-  console.log("useAlert:", alert.data);
+  const selected =
+    productionIssues.find((i) => i.batchid === selectedId) ?? null;
 
   return (
     <div className="space-y-8">
@@ -64,8 +62,8 @@ export default function ProductionIssues() {
         title="Latest Issues from Production"
         columns={columns}
         rows={productionIssues}
-        getKey={(r) => r.id}
-        onRowClick={(r) => setSearchParams({ issue: r.id })}
+        getKey={(r) => r.batchid}
+        onRowClick={(r) => setSearchParams({ issue: r.batchid })}
       />
       <IssueDetailSheet
         issue={selected}

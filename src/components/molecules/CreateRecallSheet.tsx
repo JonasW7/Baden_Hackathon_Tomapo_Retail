@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createAlert } from "@/services/alertService.js";
 import { ChevronDown, ChevronRight, RotateCcw, X } from "lucide-react";
 import {
   Sheet,
@@ -57,6 +58,7 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fromIssueOpen, setFromIssueOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
@@ -64,7 +66,7 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
         <SheetHeader className="pb-2">
           <SheetTitle>
             Create Recall for{" "}
-            <span className="font-mono text-foreground">{issue.id}</span>
+            <span className="font-mono text-foreground">{issue.batchid}</span>
           </SheetTitle>
           <SheetDescription className="text-muted-foreground">
             {tag && (
@@ -119,7 +121,7 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
                 />
                 <FixedField
                   label="Batch ID"
-                  value={<span className="font-mono">{issue.id}</span>}
+                  value={<span className="font-mono">{issue.batchid}</span>}
                 />
                 <FixedField label="Company" value={issue.company} />
                 <FixedField label="Issue Type" value={issue.type} />
@@ -141,14 +143,26 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
           <Button
             variant="secondary"
             className="flex-1 cursor-pointer"
-            disabled={!title.trim()}
-            onClick={() => {
-              alert(`Recall created: ${title}`);
-              onClose();
+            disabled={!title.trim() || loading}
+            onClick={async () => {
+              setLoading(true);
+              try {
+                await createAlert({
+                  title,
+                  description,
+                  batchId: issue.batchid,
+                  severity: issue.severity.toLowerCase(),
+                  category: issue.type,
+                  source: "official",
+                });
+                onClose();
+              } finally {
+                setLoading(false);
+              }
             }}
           >
             <RotateCcw />
-            Create Recall
+            {loading ? "Creating…" : "Create Recall"}
           </Button>
         </SheetFooter>
       </SheetContent>

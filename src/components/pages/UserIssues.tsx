@@ -8,28 +8,28 @@ import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
 
 const userIssues: Issue[] = [
   {
-    id: "USR-001",
+    batchid: "USR-001",
     company: "Rewe Group",
     type: "Missing Label",
     severity: "Medium",
     date: "2026-03-24",
   },
   {
-    id: "USR-002",
+    batchid: "USR-002",
     company: "Edeka AG",
     type: "Wrong Expiry Date",
     severity: "High",
     date: "2026-03-25",
   },
   {
-    id: "USR-003",
+    batchid: "USR-003",
     company: "Lidl GmbH",
     type: "Foreign Object",
     severity: "Critical",
     date: "2026-03-26",
   },
   {
-    id: "USR-004",
+    batchid: "USR-004",
     company: "Aldi Süd",
     type: "Damaged Packaging",
     severity: "Low",
@@ -52,14 +52,14 @@ const columns: IssueColumn<Issue>[] = [
   { header: "Issue Type", render: (r) => r.type },
   {
     header: "Report ID",
-    render: (r) => <span className="font-mono">{r.id}</span>,
+    render: (r) => <span className="font-mono">{r.batchid}</span>,
   },
 ];
 
 export default function UserIssues() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedId = searchParams.get("issue");
-  const selected = userIssues.find((i) => i.id === selectedId) ?? null;
+  const selected = userIssues.find((i) => i.batchid === selectedId) ?? null;
 
   return (
     <div className="space-y-8">
@@ -67,8 +67,8 @@ export default function UserIssues() {
         title="User Reported Issues"
         columns={columns}
         rows={userIssues}
-        getKey={(r) => r.id}
-        onRowClick={(r) => setSearchParams({ issue: r.id })}
+        getKey={(r) => r.batchid}
+        onRowClick={(r) => setSearchParams({ issue: r.batchid })}
       />
       <IssueDetailSheet
         issue={selected}

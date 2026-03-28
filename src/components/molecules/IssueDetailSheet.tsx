@@ -14,7 +14,7 @@ import { CreateRecallSheet } from "./CreateRecallSheet";
 import { Separator } from "../shadcn/separator";
 
 export type Issue = {
-  id: string;
+  batchid: string;
   company: string;
   type: string;
   severity: string;
@@ -52,7 +52,7 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
           <SheetHeader className="pb-2">
             <div className="flex items-center gap-3">
               <SheetTitle className="font-mono text-base">
-                Issue of {issue?.id}
+                Issue of {issue?.batchid}
               </SheetTitle>
             </div>
             <SheetDescription className="text-muted-foreground">
