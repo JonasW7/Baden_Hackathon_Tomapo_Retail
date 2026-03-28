@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import { useAlert } from "@/hooks/useAlert";
 import {
   IssueTableFull,
   SeverityBadge,
@@ -53,6 +54,9 @@ export default function ProductionIssues() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedId = searchParams.get("issue");
   const selected = productionIssues.find((i) => i.id === selectedId) ?? null;
+
+  const alert = useAlert("69c71442e49228ff6f63b5f4");
+  console.log("useAlert:", alert.data);
 
   return (
     <div className="space-y-8">
