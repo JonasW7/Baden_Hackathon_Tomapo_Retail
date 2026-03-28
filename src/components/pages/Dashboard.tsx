@@ -25,6 +25,7 @@ const productionColumns: IssueColumn<IssueProd>[] = [
     className: "w-40",
   },
   { header: "Company", render: (r) => r.company },
+  { header: "Title", render: (r) => r.title },
   { header: "Issue Type", render: (r) => r.type, className: "w-36" },
 ];
 
