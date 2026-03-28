@@ -4,40 +4,24 @@ import {
   SeverityBadge,
   type IssueColumn,
 } from "../molecules/IssueTableFull";
-import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
+import {
+  IssueDetailSheet,
+  type IssueUser,
+} from "../molecules/IssueDetailSheet";
 
-const userIssues: Issue[] = [
+const userIssues: IssueUser[] = [
   {
-    batchid: "USR-001",
-    company: "Rewe Group",
-    type: "Missing Label",
-    severity: "Medium",
-    date: "2026-03-24",
-  },
-  {
-    batchid: "USR-002",
-    company: "Edeka AG",
-    type: "Wrong Expiry Date",
-    severity: "High",
-    date: "2026-03-25",
-  },
-  {
-    batchid: "USR-003",
-    company: "Lidl GmbH",
-    type: "Foreign Object",
-    severity: "Critical",
-    date: "2026-03-26",
-  },
-  {
-    batchid: "USR-004",
-    company: "Aldi Süd",
-    type: "Damaged Packaging",
+    batchid: "OVO-2026-0301",
+    type: "Quality",
     severity: "Low",
-    date: "2026-03-27",
+    date: "2026-03-20",
+    title: "Community: Ovomaltine — Klumpen im Pulver",
+    description:
+      "Habe heute eine frische Dose Ovomaltine geöffnet (Charge OVO-2026-0301, MHD 08/2027). Das Pulver enthält grössere Klumpen, die sich auch beim Rühren nicht auflösen. Könnte auf ein Feuchtigkeitsproblem beim Abfüllen oder Transport hinweisen.",
   },
 ];
 
-const columns: IssueColumn<Issue>[] = [
+const columns: IssueColumn<IssueUser>[] = [
   {
     header: "Severity",
     render: (r) => <SeverityBadge label={r.severity} />,
@@ -48,7 +32,7 @@ const columns: IssueColumn<Issue>[] = [
     render: (r) => <span className="text-muted-foreground">{r.date}</span>,
     className: "w-px pr-4",
   },
-  { header: "Company", render: (r) => r.company },
+  { header: "Company", render: (r) => r.title },
   { header: "Issue Type", render: (r) => r.type },
   {
     header: "Report ID",

@@ -13,19 +13,36 @@ import { RotateCcw } from "lucide-react";
 import { CreateRecallSheet } from "./CreateRecallSheet";
 import { Separator } from "../shadcn/separator";
 
-export type Issue = {
+export type IssueProd = {
   batchid: string;
   company: string;
   type: string;
   severity: string;
   date: string;
+  title: string;
+  description: string;
 };
 
+export type IssueUser = {
+  batchid: string;
+  type: string;
+  severity: string;
+  date: string;
+  title: string;
+  description: string;
+};
+
+type AnyIssue = IssueProd | IssueUser;
+
 type Props = {
-  issue: Issue | null;
+  issue: AnyIssue | null;
   onClose: () => void;
   tag?: string;
 };
+
+function isIssue(i: AnyIssue): i is IssueProd {
+  return "company" in i;
+}
 
 function DetailRow({
   label,
@@ -70,12 +87,17 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
             <div className="flex flex-col gap-5 px-4 py-4 flex-1 overflow-y-auto">
               <DetailRow
                 label="Severity"
-                value={issue && <SeverityBadge label={issue.severity} />}
+                value={<SeverityBadge label={issue.severity} />}
               />
-              <DetailRow label="Date" value={issue?.date} />
-              <DetailRow label="Company" value={issue.company} />
-              <DetailRow label="Issue Type" value={issue.type} />
               <DetailRow label="Date" value={issue.date} />
+              <DetailRow label="Issue Type" value={issue.type} />
+              {isIssue(issue) && issue.company && (
+                <DetailRow label="Company" value={issue.company} />
+              )}
+              {issue.title && <DetailRow label="Title" value={issue.title} />}
+              {issue.description && (
+                <DetailRow label="Description" value={issue.description} />
+              )}
             </div>
           )}
 
@@ -92,7 +114,7 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
         </SheetContent>
       </Sheet>
 
-      {issue && (
+      {issue && isIssue(issue) && (
         <CreateRecallSheet
           issue={issue}
           open={recallOpen}

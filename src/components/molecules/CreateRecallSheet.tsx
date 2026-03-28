@@ -13,10 +13,10 @@ import { Button } from "../shadcn/button";
 import { Separator } from "../shadcn/separator";
 import { Input } from "../shadcn/input";
 import { SeverityBadge } from "../atoms/SeverityBadge";
-import type { Issue } from "./IssueDetailSheet";
+import type { IssueProd } from "./IssueDetailSheet";
 
 type Props = {
-  issue: Issue;
+  issue: IssueProd;
   open: boolean;
   onClose: () => void;
   tag?: string;

@@ -4,33 +4,45 @@ import {
   SeverityBadge,
   type IssueColumn,
 } from "../molecules/IssueTableFull";
-import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
+import {
+  IssueDetailSheet,
+  type IssueProd,
+} from "../molecules/IssueDetailSheet";
 
-const productionIssues: Issue[] = [
+const productionIssues: IssueProd[] = [
   {
-    batchid: "BATCH-001",
-    company: "FreshFarms GmbH",
-    type: "Temperature Deviation",
+    batchid: "LINDT-85-2026-0201",
+    company: "Lindt",
+    type: "Recall",
     severity: "High",
-    date: "2026-03-25",
+    date: "2026-03-12",
+    title: "Rückruf: Lindt Excellence 85% — mögliche Fremdkörper",
+    description:
+      "Das Bundesamt für Lebensmittelsicherheit (BLV) hat Lindt & Sprüngli aufgefordert, die Charge LINDT-85-2026-0201 zurückzurufen. Bei Stichprobenkontrollen wurden in vereinzelten Tafeln Metallsplitter nachgewiesen.",
   },
   {
-    batchid: "BATCH-002",
-    company: "AlpenMilch AG",
-    type: "Contamination Risk",
-    severity: "Critical",
-    date: "2026-03-26",
+    batchid: "CC-CH-2026-0312",
+    company: "Coca-Cola",
+    type: "Quality",
+    severity: "Medium",
+    date: "2026-03-15",
+    title: "Qualitätshinweis: Coca-Cola 500ml — abweichender Geschmack",
+    description:
+      "Unsere Qualitätskontrolle hat bei vereinzelten Flaschen der Charge CC-CH-2026-0312 einen leicht abweichenden Geschmack festgestellt. Es besteht kein Gesundheitsrisiko.",
   },
   {
-    batchid: "BATCH-003",
-    company: "GrainCo Ltd",
-    type: "Packaging Defect",
+    batchid: "MIG-2026-0305",
+    company: "Migros",
+    type: "Information",
     severity: "Low",
-    date: "2026-03-27",
+    date: "2026-03-18",
+    title: "Info: M-Classic Vollmilch — neue Verpackung ab April 2026",
+    description:
+      "Ab April 2026 erscheint die M-Classic Vollmilch in einer neuen Tetra Pak Verpackung aus 80% recyceltem Karton. Der Inhalt und das Produkt bleiben unverändert.",
   },
 ];
 
-const columns: IssueColumn<Issue>[] = [
+const columns: IssueColumn<IssueProd>[] = [
   {
     header: "Severity",
     render: (r) => <SeverityBadge label={r.severity} />,
