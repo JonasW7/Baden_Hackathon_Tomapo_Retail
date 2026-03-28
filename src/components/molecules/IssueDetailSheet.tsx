@@ -9,7 +9,7 @@ import {
 } from "../shadcn/sheet";
 import { Button } from "../shadcn/button";
 import { SeverityBadge } from "../atoms/SeverityBadge";
-import { Bell, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { CreateRecallSheet } from "./CreateRecallSheet";
 import { Separator } from "../shadcn/separator";
 
@@ -35,11 +35,9 @@ function DetailRow({
   value: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-0.5">
-      <span className="text-xs text-muted-foreground uppercase tracking-wide">
-        {label}
-      </span>
-      <span className="text-sm font-medium text-foreground">{value}</span>
+    <div className="flex items-center gap-2 text-sm">
+      <span className="font-bold text-foreground min-w-24">{label}</span>
+      <span className="text-foreground">{value}</span>
     </div>
   );
 }
@@ -87,20 +85,12 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
 
           <SheetFooter className="flex flex-row gap-2 px-4 pb-6">
             <Button
-              variant="outline"
+              variant="secondary"
               className="flex-1 cursor-pointer"
               onClick={() => setRecallOpen(true)}
             >
               <RotateCcw />
               Create Recall
-            </Button>
-            <Button
-              variant="outline"
-              className="flex-1 cursor-pointer"
-              onClick={() => alert(`Alert sent for ${issue?.id}`)}
-            >
-              <Bell />
-              Send Alert
             </Button>
           </SheetFooter>
         </SheetContent>

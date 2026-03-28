@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Cross, RotateCcw, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -131,20 +131,23 @@ export function CreateRecallSheet({ issue, open, onClose, tag }: Props) {
 
         <SheetFooter className="flex flex-row gap-2 px-4 pb-6">
           <Button
-            variant="outline"
+            variant="default"
             className="flex-1 cursor-pointer"
             onClick={onClose}
           >
+            <X />
             Cancel
           </Button>
           <Button
-            className="flex-1 cursor-pointer bg-secondary"
+            variant="secondary"
+            className="flex-1 cursor-pointer"
             disabled={!title.trim()}
             onClick={() => {
               alert(`Recall created: ${title}`);
               onClose();
             }}
           >
+            <RotateCcw />
             Create Recall
           </Button>
         </SheetFooter>
