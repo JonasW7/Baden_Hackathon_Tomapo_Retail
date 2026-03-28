@@ -1,20 +1,59 @@
 import { useSearchParams } from "react-router-dom";
-import { IssueTableFull, SeverityBadge, type IssueColumn } from "../molecules/IssueTableFull";
+import {
+  IssueTableFull,
+  SeverityBadge,
+  type IssueColumn,
+} from "../molecules/IssueTableFull";
 import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
 
 const userIssues: Issue[] = [
-  { id: "USR-001", company: "Rewe Group", type: "Missing Label", severity: "Medium", date: "2026-03-24" },
-  { id: "USR-002", company: "Edeka AG", type: "Wrong Expiry Date", severity: "High", date: "2026-03-25" },
-  { id: "USR-003", company: "Lidl GmbH", type: "Foreign Object", severity: "Critical", date: "2026-03-26" },
-  { id: "USR-004", company: "Aldi Süd", type: "Damaged Packaging", severity: "Low", date: "2026-03-27" },
+  {
+    id: "USR-001",
+    company: "Rewe Group",
+    type: "Missing Label",
+    severity: "Medium",
+    date: "2026-03-24",
+  },
+  {
+    id: "USR-002",
+    company: "Edeka AG",
+    type: "Wrong Expiry Date",
+    severity: "High",
+    date: "2026-03-25",
+  },
+  {
+    id: "USR-003",
+    company: "Lidl GmbH",
+    type: "Foreign Object",
+    severity: "Critical",
+    date: "2026-03-26",
+  },
+  {
+    id: "USR-004",
+    company: "Aldi Süd",
+    type: "Damaged Packaging",
+    severity: "Low",
+    date: "2026-03-27",
+  },
 ];
 
 const columns: IssueColumn<Issue>[] = [
-  { header: "Severity", render: (r) => <SeverityBadge label={r.severity} />, className: "w-px pr-4" },
-  { header: "Date", render: (r) => <span className="text-muted-foreground">{r.date}</span>, className: "w-px pr-4" },
+  {
+    header: "Severity",
+    render: (r) => <SeverityBadge label={r.severity} />,
+    className: "w-px pr-4",
+  },
+  {
+    header: "Date",
+    render: (r) => <span className="text-muted-foreground">{r.date}</span>,
+    className: "w-px pr-4",
+  },
   { header: "Company", render: (r) => r.company },
   { header: "Issue Type", render: (r) => r.type },
-  { header: "Report ID", render: (r) => <span className="font-mono">{r.id}</span> },
+  {
+    header: "Report ID",
+    render: (r) => <span className="font-mono">{r.id}</span>,
+  },
 ];
 
 export default function UserIssues() {
@@ -34,7 +73,7 @@ export default function UserIssues() {
       <IssueDetailSheet
         issue={selected}
         onClose={() => setSearchParams({})}
-        tag="User Report"
+        tag="User"
       />
     </div>
   );

@@ -3,11 +3,15 @@ import { SeverityBadge } from "@/components/atoms/SeverityBadge";
 type RecallStatus = "Active" | "Monitoring" | "Resolved";
 
 export type Recall = {
+  id: string;
   product: string;
   batch: string;
   units: number;
   resolved: number;
   status: RecallStatus;
+  title: string;
+  description: string;
+  date: string;
 };
 
 const statusColor: Record<RecallStatus, string> = {
@@ -18,15 +22,17 @@ const statusColor: Record<RecallStatus, string> = {
 
 type RecallListProps = {
   recalls: Recall[];
+  onRowClick?: (recall: Recall) => void;
 };
 
-export function RecallList({ recalls }: RecallListProps) {
+export function RecallList({ recalls, onRowClick }: RecallListProps) {
   return (
     <div className="space-y-3">
       {recalls.map((recall) => (
         <div
           key={recall.batch}
-          className="bg-card rounded-xl shadow-sm px-5 py-4 flex items-center justify-between"
+          onClick={() => onRowClick?.(recall)}
+          className={`bg-card rounded-xl shadow-sm px-5 py-4 flex items-center justify-between ${onRowClick ? "cursor-pointer hover:bg-muted/60 transition-colors" : ""}`}
         >
           <div className="space-y-1">
             <div className="flex items-center gap-3">

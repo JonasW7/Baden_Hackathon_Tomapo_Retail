@@ -52,7 +52,7 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
           <SheetHeader className="pb-2">
             <div className="flex items-center gap-3">
               <SheetTitle className="font-mono text-base">
-                {issue?.id}
+                Issue of {issue?.id}
               </SheetTitle>
             </div>
             <SheetDescription className="text-muted-foreground">
@@ -76,10 +76,6 @@ export function IssueDetailSheet({ issue, onClose, tag }: Props) {
               <DetailRow label="Company" value={issue.company} />
               <DetailRow label="Issue Type" value={issue.type} />
               <DetailRow label="Date" value={issue.date} />
-              <DetailRow
-                label="Batch ID"
-                value={<span className="font-mono">{issue.id}</span>}
-              />
             </div>
           )}
 
