@@ -26,6 +26,8 @@ VITE_TEST_PASSWORD=Test1234!
 npm run dev
 ```
 
+To log in, use any value or leave the fields empty — credentials are not validated.
+
 ## Stack
 
 - **React 19** + **TypeScript** — UI
