@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import {
   LayoutDashboard,
   Warehouse,
@@ -6,10 +6,12 @@ import {
   RotateCcw,
   Sun,
   Moon,
+  LogOut,
 } from "lucide-react";
 import logo from "@/assets/logo/Tomapo_light.png";
 import { useTheme } from "@/context/themeProvider";
 import { Button } from "@/components/shadcn/button";
+import { logout } from "@/services/userService";
 import {
   Sidebar,
   SidebarContent,
@@ -33,6 +35,7 @@ const navItems = [
 export default function AppSidebar() {
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
+  const navigate = useNavigate();
 
   return (
     <Sidebar collapsible="icon" className="select-none">
@@ -79,6 +82,16 @@ export default function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-2 flex flex-row gap-1 group-data-[collapsible=icon]:flex-col justify-between">
+        <Button
+          variant="ghost"
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
+          className="cursor-pointer h-12 w-12 group-data-[collapsible=icon]:h-8 group-data-[collapsible=icon]:w-8"
+        >
+          <LogOut />
+        </Button>
         <Button
           variant="ghost"
           onClick={() => setTheme(isDark ? "light" : "dark")}
