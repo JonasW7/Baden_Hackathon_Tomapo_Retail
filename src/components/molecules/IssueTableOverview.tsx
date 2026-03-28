@@ -22,6 +22,7 @@ type IssueTableProps<T> = {
   columns: IssueColumn<T>[];
   rows: T[];
   getKey: (row: T) => string;
+  onRowClick?: (row: T) => void;
 };
 
 export function IssueTable<T>({
@@ -30,6 +31,7 @@ export function IssueTable<T>({
   columns,
   rows,
   getKey,
+  onRowClick,
 }: IssueTableProps<T>) {
   return (
     <div className="bg-card rounded-xl shadow-sm p-5">
@@ -54,7 +56,11 @@ export function IssueTable<T>({
         </TableHeader>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={getKey(row)}>
+            <TableRow
+              key={getKey(row)}
+              onClick={() => onRowClick?.(row)}
+              className={onRowClick ? "cursor-pointer hover:bg-muted/60" : ""}
+            >
               {columns.map((col) => (
                 <TableCell key={col.header} className={col.className}>
                   {col.render(row)}

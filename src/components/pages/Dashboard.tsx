@@ -1,4 +1,5 @@
 import { Users, Package, Warehouse, RotateCcw } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   IssueTable,
   type IssueColumn,
@@ -45,7 +46,7 @@ const productionIssues: ProductionIssue[] = [
 
 const userIssues: UserIssue[] = [
   {
-    id: "RPT-101",
+    id: "USR-001",
     user: "Max M.",
     product: "Organic Yogurt",
     issue: "Foreign Object",
@@ -53,7 +54,7 @@ const userIssues: UserIssue[] = [
     match: true,
   },
   {
-    id: "RPT-102",
+    id: "USR-002",
     user: "Anna K.",
     product: "Whole Milk",
     issue: "Off Taste",
@@ -61,7 +62,7 @@ const userIssues: UserIssue[] = [
     match: true,
   },
   {
-    id: "RPT-103",
+    id: "USR-003",
     user: "Tom B.",
     product: "Cheese Block",
     issue: "Mold",
@@ -108,6 +109,8 @@ const userColumns: IssueColumn<UserIssue>[] = [
 
 // --- Dashboard ---
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-8">
       {/* Stat Cards */}
@@ -145,6 +148,7 @@ export default function Dashboard() {
         columns={productionColumns}
         rows={productionIssues}
         getKey={(r) => r.id}
+        onRowClick={(r) => navigate(`/issues-production?issue=${r.id}`)}
       />
 
       {/* User Issues */}
@@ -154,6 +158,7 @@ export default function Dashboard() {
         columns={userColumns}
         rows={userIssues}
         getKey={(r) => r.id}
+        onRowClick={(r) => navigate(`/issues-user?issue=${r.id}`)}
       />
     </div>
   );

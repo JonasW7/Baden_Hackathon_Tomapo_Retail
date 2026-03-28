@@ -6,7 +6,7 @@ export type Recall = {
   product: string;
   batch: string;
   units: number;
-  notified: number;
+  resolved: number;
   status: RecallStatus;
 };
 
@@ -38,20 +38,22 @@ export function RecallList({ recalls }: RecallListProps) {
             </p>
             <p className="text-sm text-muted-foreground">
               {recall.units.toLocaleString()} units in circulation ·{" "}
-              {recall.notified.toLocaleString()} users notified
+              {recall.resolved.toLocaleString()} units resolved
             </p>
           </div>
           <div className="text-right text-sm text-muted-foreground min-w-36">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs">Notified</span>
+              <span className="text-xs">Resolved</span>
               <span className="text-xs font-semibold text-foreground">
-                {Math.round((recall.notified / recall.units) * 100)}%
+                {Math.round((recall.resolved / recall.units) * 100)}%
               </span>
             </div>
             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
               <div
                 className="h-full bg-secondary rounded-full transition-all"
-                style={{ width: `${Math.round((recall.notified / recall.units) * 100)}%` }}
+                style={{
+                  width: `${Math.round((recall.resolved / recall.units) * 100)}%`,
+                }}
               />
             </div>
           </div>

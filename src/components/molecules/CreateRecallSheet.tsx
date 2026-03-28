@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Cross, RotateCcw, X } from "lucide-react";
+import { ChevronDown, ChevronRight, RotateCcw, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,

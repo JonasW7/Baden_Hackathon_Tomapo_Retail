@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { IssueTableFull, SeverityBadge, type IssueColumn } from "../molecules/IssueTableFull";
 import { IssueDetailSheet, type Issue } from "../molecules/IssueDetailSheet";
 
@@ -18,7 +18,9 @@ const columns: IssueColumn<Issue>[] = [
 ];
 
 export default function UserIssues() {
-  const [selected, setSelected] = useState<Issue | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedId = searchParams.get("issue");
+  const selected = userIssues.find((i) => i.id === selectedId) ?? null;
 
   return (
     <div className="space-y-8">
@@ -27,9 +29,13 @@ export default function UserIssues() {
         columns={columns}
         rows={userIssues}
         getKey={(r) => r.id}
-        onRowClick={setSelected}
+        onRowClick={(r) => setSearchParams({ issue: r.id })}
       />
-      <IssueDetailSheet issue={selected} onClose={() => setSelected(null)} tag="User Report" />
+      <IssueDetailSheet
+        issue={selected}
+        onClose={() => setSearchParams({})}
+        tag="User Report"
+      />
     </div>
   );
 }
